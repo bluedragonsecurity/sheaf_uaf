@@ -1,0 +1,213 @@
+/*
+ * ccsheaf.c - uaf read and write vulner for cross cache
+ * warning ! this one has no sheaves
+ * so this is a classic one but for kernel 7.0
+ * Antonius - bluedragonsec.com
+ */
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/init.h>
+#include <linux/fs.h>
+#include <linux/device.h>
+#include <linux/slab.h>
+#include <linux/uaccess.h>
+#include <linux/mutex.h>
+#include <linux/ioctl.h>
+#include <linux/io.h>
+typedef void (*ccs_complete_fn)(void *ctx);
+struct ccs_req { int slot; __u32 len; __u64 ubuf; };
+struct ccs_dbg {
+	int   slot;
+	__u64 kaddr;
+	__u64 pfn;
+	__u64 phys;
+	__u32 page_type;
+	__u32 objs_per_slab;   
+	__u32 sheaf_capacity; 
+};
+#define DEVNAME    "ccsheaf"
+#define OBJ_SIZE   512
+#define MAX_SLOTS  16384
+#define CCS_ALLOC    _IOWR('C', 0x01, struct ccs_req)   /* ccs_victim   */
+#define CCS_FREE     _IOWR('C', 0x04, struct ccs_req)  
+#define CCS_PEEK     _IOWR('C', 0x03, struct ccs_req)   /* UAF read (leak) */
+#define CCS_POKE     _IOWR('C', 0x02, struct ccs_req)   /* UAF write */
+#define CCS_FIRE     _IOWR('C', 0x07, struct ccs_req)   /* complete(ctx) for LPE */
+#define CCS_ALLOC_CG _IOWR('C', 0x08, struct ccs_req)   /* reclaimer kmalloc-cg   */
+#define CCS_DBG      _IOWR('C', 0x06, struct ccs_dbg)   
+#define CCS_DEFAULT_COMPLETE ((ccs_complete_fn)kfree)
+struct ccs_object {
+	ccs_complete_fn complete;  
+	void           *ctx;       
+	u32             seq;        
+	u32             _pad;       
+	char            data[OBJ_SIZE - 0x18];
+};
+static void *slots[MAX_SLOTS];
+static DEFINE_MUTEX(ccs_lock);
+static int ccs_major;
+static struct class *ccs_class;
+static struct device *ccs_dev;
+static atomic_t ccs_seq = ATOMIC_INIT(0);
+/* victim : dedicated without sheaf. SLAB_NOLEAKTRACE -> sheaf_capacity=0 */
+static struct kmem_cache *ccs_victim;
+
+static long ccs_ioctl(struct file *f, unsigned int cmd, unsigned long arg) {
+	struct ccs_req req;
+	long ret = 0;
+
+	if (cmd == CCS_DBG) {
+		struct ccs_dbg d;
+		void *obj;
+
+		if (copy_from_user(&d, (void __user *)arg, sizeof(d)))
+			return -EFAULT;
+		if (d.slot < 0 || d.slot >= MAX_SLOTS)
+			return -EINVAL;
+		obj = slots[d.slot];
+		d.kaddr = (unsigned long)obj;
+		d.objs_per_slab  = 0;
+		d.sheaf_capacity = 0;
+		if (obj) {
+			struct page *pg = virt_to_page(obj);
+			d.phys = virt_to_phys(obj);
+			d.pfn  = d.phys >> PAGE_SHIFT;
+			d.page_type = pg ? pg->page_type : 0;
+		} 
+		else { 
+			d.phys = d.pfn = 0; 
+			d.page_type = 0; 
+		}
+		if (copy_to_user((void __user *)arg, &d, sizeof(d)))
+			return -EFAULT;
+		return 0;
+	}
+	if (copy_from_user(&req, (void __user *)arg, sizeof(req)))
+		return -EFAULT;
+	if (req.slot < 0 || req.slot >= MAX_SLOTS)
+		return -EINVAL;
+	if ((cmd == CCS_PEEK || cmd == CCS_POKE) && req.len > OBJ_SIZE)
+		return -EINVAL;
+	mutex_lock(&ccs_lock);
+	switch (cmd) {
+	case CCS_ALLOC: {
+		/* victim at dedicated cache without sheaf */
+		struct ccs_object *obj = kmem_cache_alloc(ccs_victim, GFP_KERNEL);
+		if (!obj) { 
+			ret = -ENOMEM; 
+			break; 
+		}
+		obj->complete = CCS_DEFAULT_COMPLETE;
+		obj->ctx      = NULL;
+		obj->seq      = atomic_inc_return(&ccs_seq);
+		slots[req.slot] = obj;
+		break;
+	}
+	case CCS_ALLOC_CG: {
+		/* reclaim at kmalloc-cg-512 */
+		struct ccs_object *obj = kmalloc(OBJ_SIZE, GFP_KERNEL_ACCOUNT);
+		if (!obj) { 
+			ret = -ENOMEM; 
+			break; 
+		}
+		obj->complete = CCS_DEFAULT_COMPLETE;
+		obj->ctx      = NULL;
+		obj->seq      = atomic_inc_return(&ccs_seq);
+		slots[req.slot] = obj;
+		break;
+	}
+	case CCS_FREE:
+		if (!slots[req.slot]) { 
+			ret = -ENOENT; 
+			break; 
+		}
+		kmem_cache_free(ccs_victim, slots[req.slot]);
+		break;
+	case CCS_PEEK:   /* UAF read */
+		if (!slots[req.slot]) { 
+			ret = -ENOENT; 
+			break; 
+		}
+		if (copy_to_user((void __user *)req.ubuf, slots[req.slot], req.len))
+			ret = -EFAULT;
+		break;
+	case CCS_POKE:   /* UAF write */
+		if (!slots[req.slot]) { 
+			ret = -ENOENT; 
+			break; 
+		}
+		if (copy_from_user(slots[req.slot], (void __user *)req.ubuf, req.len))
+			ret = -EFAULT;
+		break;
+	case CCS_FIRE: { /* indirect call for LPE */
+		struct ccs_object *obj = slots[req.slot];
+		if (!obj) { 
+			ret = -ENOENT; 
+			break; 
+		}
+		if (obj->complete)
+			obj->complete(obj->ctx);
+		break;
+	}
+	default:
+		ret = -ENOTTY;
+	}
+	mutex_unlock(&ccs_lock);
+
+	return ret;
+}
+
+static const struct file_operations ccs_fops = {
+	.owner = THIS_MODULE,
+	.unlocked_ioctl = ccs_ioctl,
+	.compat_ioctl = ccs_ioctl,
+};
+
+static char *ccs_devnode(const struct device *dev, umode_t *mode) { 
+	if (mode) *mode = 0666; 
+	
+	return NULL; 
+}
+
+static int __init ccs_init(void) {
+	/* victim cache : 512 b without sheaf (SLAB_NOLEAKTRACE  */
+	{
+		struct kmem_cache_args args = {
+			.useroffset = 0,
+			.usersize   = OBJ_SIZE,
+		};
+		ccs_victim = kmem_cache_create("ccs_victim", OBJ_SIZE, &args, SLAB_NOLEAKTRACE | SLAB_NO_MERGE);
+	}
+	if (!ccs_victim)
+		return -ENOMEM;
+	ccs_major = register_chrdev(0, DEVNAME, &ccs_fops);
+	if (ccs_major < 0) { 
+		kmem_cache_destroy(ccs_victim); 
+		return ccs_major; 
+	}
+	ccs_class = class_create(DEVNAME);
+	if (IS_ERR(ccs_class)) {
+		unregister_chrdev(ccs_major, DEVNAME);
+		kmem_cache_destroy(ccs_victim);
+		return PTR_ERR(ccs_class);
+	}
+	ccs_class->devnode = ccs_devnode;
+	ccs_dev = device_create(ccs_class, NULL, MKDEV(ccs_major, 0), NULL, DEVNAME);
+
+	return 0;
+}
+static void __exit ccs_exit(void) {
+	int i;
+	
+	device_destroy(ccs_class, MKDEV(ccs_major, 0));
+	class_destroy(ccs_class);
+	unregister_chrdev(ccs_major, DEVNAME);
+	for (i = 0; i < MAX_SLOTS; i++) 
+		slots[i] = NULL;
+	kmem_cache_destroy(ccs_victim);
+}
+module_init(ccs_init);
+module_exit(ccs_exit);
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Antonius (w1sdom) - bluedragonsec.com");
+MODULE_DESCRIPTION("Cross cache UAF lkm (no sheaf victim for SLUB sheaves kernel 7.0)");
