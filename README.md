@@ -10,8 +10,10 @@
 >n.b:
 <pre>
 - Some exploits might need to run more than once if failed.
-- When you have tested some exploits, the next exploit might fails, you need to restart your machine before continue.
-- For lab source code, you need to compile the lkm with "make" and then "insmod" the .ko before testing the exploit.
+- When you have tested some exploits, the next exploit might fails, 
+  you need to restart your machine before continue.
+- For lab source code, you need to compile the lkm with "make"  
+  and then "insmod" the .ko before testing the exploit.
 - To compile the exploit, please read the source, mostly : gcc -static -o exploit exploit.c
   or just type : make
 </pre>
@@ -20,6 +22,9 @@
 ### vm-linux-7.0.tar.bz2
 
 >The kernel and other supporting files, if you want to test the exploit. Suggested distro : lubuntu 26 in Qemu. 
+>Linux kernel 7.0
+>kaslr on & kptr_restrict = 2.
+>Mitigation level == default mitigations at ubuntu 26 or lubuntu 26.
 
 ## pOc Collections for Linux Kernel 7.0 Slub Sheaves Exploitation Series
 
