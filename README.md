@@ -1,6 +1,6 @@
 # UAF Exploitation in Sheaves Era - The Exploitation pOc Artifacts
 
-(c))Antonius (w1sdom / sw0rdm4n / ev1lut10n) - www.bluedragonsec.com - 2026
+(c) Antonius (w1sdom / sw0rdm4n / ev1lut10n) - www.bluedragonsec.com - 2026
 
 
 >This repository is about Use After Free Exploitation pOc specific to the new slub sheaves architecture in the linux kernel 7.0 on x86_64 architecture. 
@@ -14,34 +14,56 @@
   you need to restart your machine before continue.
 - For lab source code, you need to compile the lkm with "make"  
   and then "insmod" the .ko before testing the exploit.
-- To compile the exploit, please read the source, mostly : gcc -static -o exploit exploit.c
-  or just type : make
+- To compile the exploit : make
 </pre>
 
 
-### vm-linux-7.0.tar.bz2
+### vmlinux
 
->The kernel and other supporting files, if you want to test the exploit. Suggested distro : lubuntu 26 in Qemu. 
->Linux kernel 7.0
+>Suggested distro : lubuntu 26 in Qemu. 
+>Linux kernels with default mitigations enabled.
+>Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
 >kaslr on & kptr_restrict = 2.
->Mitigation level == default mitigations at ubuntu 26 or lubuntu 26.
+>HARDENED_USERCOPY enabled
+>RANDOM_KMALLOC_CACHES enabled
+>INIT_ON_ALLOC enabled
+>INIT_ON_FREE off
+
+## Contents : 
+
+#### vmlinux-7-damn-vulnerable-uaf
+>Linux kernel 7.0 with default mitigations enabled.
+>Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
+>This is a linux 7.0 kernel where I removed all patches related to UAF.
+
+#### vmlinux-7.0
+>Linux kernel 7.0 with default mitigations enabled.
+>Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
+>Standard linux kernel with some UAF patched.
+
+#### vmlinux-7.0-rc1
+>Linux kernel 7.0-rc1 with default mitigations enabled.
+>Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
+>This one is used for testing sheafjack v2 only.
 
 ## pOc Collections for Linux Kernel 7.0 Slub Sheaves Exploitation Series
 
-###cross_cache
+### cross_cache
 
 >Cross cache UAF exploitation pOc for slub sheaves.
 
-###same_cache
+### same_cache
 
 >Same cache UAF exploitation pOc for slub sheaves.
 
-###elastic_objects
+### elastic_objects
 
 >Same cache UAF exploitation p0c using elastic object to build AARW primitives.
 
-###sheafjack
+### sheafjack
 
 >SheafJack is a novel UAF exploitation technique for slub sheaves.
 
+### exploits
 
+>Real world exploits - for demonstrating UAF based exploits in linux 7.0.

@@ -1,8 +1,8 @@
-#Cross Cache UAF Exploitation pOc for Linux 7.0
+# Cross Cache UAF Exploitation pOc for Linux 7.0
 
 >Antonius (w1sdom / ev1lut10n / sw0rdm4n / ringlayer / robotsoft) - bluedragonsec.com
 
-##LPE SERIES
+## LPE SERIES
 
 ### cross_cache_cred
 
@@ -33,11 +33,11 @@ Deterministic cross cache using kratnowl strategy.
 
 ### cross_cache_socket2
 
->Cross cache UAF exploitation pOc for linux kernel 7.0 slub sheaves. ret2buddy is accomplished by draining the main sheaf, spare sheaf, saturate the barn, once return to slab, I create a condition where kernel do a jmp to slab_empty to discard_slab() hence return to buddy. lulz.
+>Cross cache UAF exploitation pOc for linux kernel 7.0 slub sheaves.  Cross-cache strategy is adapted from cross-x (complete free). 
 
 ### cross_cache_dirtycred2
 
->Cross cache UAF exploitation pOc for linux kernel 7.0 slub sheaves using DirtyCred f_mode overwrite for LPE. Without information leak at all. The secret recipe for cross cache in kernel 7 ? create a condition where (!new.inuse && n->nr_partial >= s->min_partial), this is going to make a jmp to slab_empty ! So what's there at slab_empty ??? discard_slab() -> this one is the key for returning to buddy !!! 
+>Cross cache UAF exploitation pOc for linux kernel 7.0 slub sheaves using DirtyCred f_mode overwrite for LPE. Without information leak at all. Cross-cache strategy is adapted from cross-x (complete free). 
 
 ### cross_cache_dirtycred
 
@@ -62,9 +62,10 @@ Deterministic cross cache using kratnowl strategy.
 ### cross_cache_socket2
 
 >Cross cache UAF exploitation pOc for linux kernel 7.0 slub sheaves using modprobe for LPE. Communication via socket.
+Cross-Cache Mechanism using Complete Free - Adapted from Cross-x.
 
 
-##INFORMATION LEAK SERIES
+## INFORMATION LEAK SERIES
 
 ### cross_cache_read_leak_xattr
 

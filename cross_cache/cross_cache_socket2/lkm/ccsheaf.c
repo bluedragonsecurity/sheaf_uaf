@@ -1,7 +1,6 @@
 /*
  * UAF vulnerable LKM for cross cache experiment on kernel 7.0
- * ret2buddy mechanics : 
- * drain sheaf main, spare, saturate barn, discard_slab() -> buddy
+ * complete free for linux 7.0
  * by: Antonius (sw0rdm4n) - bluedragonsec.com
  */
 #include <linux/module.h>

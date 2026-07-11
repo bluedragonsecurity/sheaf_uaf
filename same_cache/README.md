@@ -1,8 +1,8 @@
-#Same Cache UAF Exploitation pOc for Linux 7.0
+# Same Cache UAF Exploitation pOc for Linux 7.0
 
 >Antonius (w1sdom / ev1lut10n / sw0rdm4n / ringlayer / robotsoft) - bluedragonsec.com
 
-##LPE SERIES
+## LPE SERIES
 
 ### same_cache_dirtycred
 
@@ -37,7 +37,7 @@
 >Same cache UAF exploitation pOc for linux kernel 7.0 slub sheaves using modprobe for LPE. Communication via socket. An UAF read for information leak & UAF write for LPE.
 
 
-##INFORMATION LEAK SERIES
+## INFORMATION LEAK SERIES
 
 ### same_cache_write_leak_vmemmap
 
