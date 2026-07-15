@@ -303,5 +303,5 @@ static void __exit ccs_exit(void) {
 module_init(ccs_init);
 module_exit(ccs_exit);
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Antonius (w1sdom / sw0rdm4n) - bluedragonsec.com");
+MODULE_AUTHOR("Antonius (w1sdom / ev1lut10n / sw0rdm4n) - bluedragonsec.com");
 MODULE_DESCRIPTION("Vulnerable LKM - kratnowl cross-cache method");
