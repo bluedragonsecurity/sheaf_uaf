@@ -1,5 +1,7 @@
 # UAF Exploitation in The Sheaves Era - The Exploitation pOc Artifacts
-
+<hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
+"A Guide into Linux Kernel 7.* UAF Exploitation"
+<hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 >(c) Antonius 
 > Nicknames : w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l 
 > jck.marshall (1 time usage), ringlayer, robotsoft, mranton, 黑蝎子, Prof. Robotsoft, Mr. Robot 
@@ -38,7 +40,7 @@
   before testing the exploit.
 - To compile the exploit : make
 </pre>
-
+<hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 ### vmlinux
 
@@ -90,6 +92,7 @@
 >
 >kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
 
+<hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 ## pOc Collections for Linux Kernel 7.0 Slub Sheaves Exploitation Series
 
@@ -113,7 +116,7 @@
 
 >Real world exploits - for demonstrating UAF based exploits in linux 7.0. Tested on linux kernel 7.0 - lubuntu 26.
 
-<hr>
+<hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 # TABLE OF CONTENTS (DETAILED VERSION)
 
