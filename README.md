@@ -1,4 +1,4 @@
-# UAF Exploitation in Sheaves Era - The Exploitation pOc Artifacts
+# UAF Exploitation in The Sheaves Era - The Exploitation pOc Artifacts
 
 >(c) Antonius 
 > Nicknames : w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l 
@@ -8,8 +8,7 @@
 >
 >https://github.com/bluedragonsecurity
 >
-<br>
->This repository is about Use After Free Exploitation pOc specific to the new slub sheaves architecture in the linux kernel 7.0 on x86_64 architecture. 
+> This repository is about Use After Free Exploitation pOc specific to the new slub sheaves architecture in the linux kernel 7.0 on x86_64 architecture. 
 
 >Everything designed here is specific for linux kernel version 7.0. 
 >
