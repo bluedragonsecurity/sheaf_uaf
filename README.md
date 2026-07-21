@@ -4,9 +4,9 @@
 > Nicknames : w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l 
 > jck.marshall (1 time usage), ringlayer, robotsoft, mranton, 黑蝎子, Prof. Robotsoft, Mr. Robot 
 >
->(c) www.bluedragonsec.com - 2026 All Rights Reserved
+>(c) <a href="https://www.bluedragonsec.com" style="color: white;">www.bluedragonsec.com</a>- 2026 All Rights Reserved
 >
->https://github.com/bluedragonsecurity
+><a href="https://github.com/bluedragonsecurity" style="color: white;">https://github.com/bluedragonsecurity</a>
 >
 > This repository is about Use After Free Exploitation pOc specific to the new slub sheaves architecture in the linux kernel 7.0 on x86_64 architecture. 
 
