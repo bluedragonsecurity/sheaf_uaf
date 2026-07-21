@@ -101,57 +101,57 @@
 
 ## cross_cache
 
->cross_cache_cred
+cross_cache_cred
 >
 >Cross-cache technique : volume overflow, exp tech : cred overwrite, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_dirtycred
+cross_cache_dirtycred
 >
 >Cross-cache technique : volume overflow, exp tech : DirtyCred, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_dirtycred2
+cross_cache_dirtycred2
 >
 >Cross-cache technique : complete free, exp tech : DirtyCred, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_dirtycred_deterministic
+cross_cache_dirtycred_deterministic
 >
 >Cross-cache technique : kratnowl 6-pool, exp tech : DirtyCred, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_dirtypagetable
+cross_cache_dirtypagetable
 >
 >Cross-cache technique : volume overflow, exp tech : DirtyPageTable, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_dirtypagetable_deterministic
+cross_cache_dirtypagetable_deterministic
 >
 >Cross-cache technique : kratnowl 6-pool, exp tech : DirtyPageTable, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_hijack1
+cross_cache_hijack1
 >
 >Cross-cache technique : volume overflow, exp tech : function pointer overwrite, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_hijack2_no_sheaf
+cross_cache_hijack2_no_sheaf
 >
 >Cross-cache technique : classic (without sheaves), exp tech : function pointer overwrite, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_modprobe
+cross_cache_modprobe
 >
 >Cross-cache technique : volume overflow, exp tech : modprobe, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_modprobe_socket_deterministic
+cross_cache_modprobe_socket_deterministic
 >
 >Cross-cache technique : kratnowl 6-pool, exp tech : modprobe, comm : socket interface ,target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_pagejack_deterministic
+cross_cache_pagejack_deterministic
 >
 >Cross-cache technique : kratnowl 6-pool, exp tech : pagejack, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
@@ -161,12 +161,12 @@ cross_cache_read_leak_xattr
 >Cross-cache technique : volume overflow, exp tech : UAF read -> info leak, vehicle :simple_xattr, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_socket
+cross_cache_socket
 >
 >Cross-cache technique : volume overflow, exp tech : modprobe, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_socket2
+cross_cache_socket2
 >
 >Cross-cache technique : complete free, exp tech : modprobe, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
@@ -176,63 +176,63 @@ cross_cache_read_leak_xattr
 
 ## same_cache
 
->same_cache_cred
+same_cache_cred
 >
 >same cache UAF reclaim, tech : cred overwrite, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->same_cache_dirtycred
+same_cache_dirtycred
 >
 >same cache UAF reclaim, tech : DirtyCred, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->same_cache_hijack
+same_cache_hijack
 >
 >same cache UAF reclaim, tech : function pointer hijack, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->same_cache_leak2lpe
+same_cache_leak2lpe
 >
 >same cache UAF reclaim, tech : convert UAF write into information leak, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->same_cache_modprobe
+same_cache_modprobe
 >
 >same cache UAF reclaim, tech : modprobe, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 >
 <br><br>
->same_cache_pagejack
+same_cache_pagejack
 >
 >same cache UAF reclaim, tech : pagejack, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 >
 <br><br>
->same_cache_read_leak_seq_file
+same_cache_read_leak_seq_file
 >
 >same cache UAF reclaim, tech : UAF read -> info leak, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 >
 <br><br>
->same_cache_socket
+same_cache_socket
 >
 >same cache UAF reclaim, socket interface, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 >
 <br><br>
->same_cache_write_leak_user_key
+same_cache_write_leak_user_key
 >
 >same cache UAF reclaim, tech : UAF write -> info leak, vehicle userkey_payload, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 >
 <br><br>
->same_cache_write_leak_vmemmap
+same_cache_write_leak_vmemmap
 >
 >same cache UAF reclaim, tech : UAF write -> info leak, leaks vmemmap, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 >
 <br><br>
->same_cache_write_leak_xattr
+same_cache_write_leak_xattr
 >
 >same cache UAF reclaim, tech : UAF write -> info leak, vehicle simple_xattr, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
@@ -242,41 +242,41 @@ cross_cache_read_leak_xattr
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 ## elastic_objects
->same_cache_elastic_imu
+same_cache_elastic_imu
 >
 >same cache UAF reclaim, build aarw using io_uring, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->same_cache_elastic_pipe_cred
+same_cache_elastic_pipe_cred
 >
 >same cache UAF reclaim, build aarw using pipe_buffer, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
 
->same_cache_elastic_pipe_modprobe
+same_cache_elastic_pipe_modprobe
 >
 >same cache UAF reclaim, build aarw using pipe_buffer, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
 
->cross_cache_elastic_imu_deterministic
+cross_cache_elastic_imu_deterministic
 >
 >cross cache tech : kratnowl 6-pool, build aarw using io_uring, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
 
->cross_cache_elastic_pipe_deterministic
+cross_cache_elastic_pipe_deterministic
 >
 >cross cache tech : kratnowl 6-pool, build aarw using pipe_buffer, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
 
->cross_cache_elastic_imu_siphon
+cross_cache_elastic_imu_siphon
 >
 >cross cache tech : SheavesSiphon, build aarw using io_uring, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu.
 >
 <br><br>
->cross_cache_elastic_pipe_siphon
+cross_cache_elastic_pipe_siphon
 >
 >cross cache tech : SheavesSiphon, build aarw using pipe_buffer, target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu
 <br><br>
@@ -284,22 +284,22 @@ cross_cache_read_leak_xattr
 
 ## sheafjack
 
->sheafjack_v1_btrfs_aarw_test
+sheafjack_v1_btrfs_aarw_test
 >
 >SheafJack v1 + Deep Sheaf Poisoning Proof of Concepts (but via AARW), target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu
 >
 <br><br>
->sheafjack_v1_modprobe_aarw_test
+sheafjack_v1_modprobe_aarw_test
 >
 >SheafJack v1 + Deep Sheaf Poisoning Proof of Concepts (but via AARW), target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu
 >
 <br><br>
->sheafjack_v2_modprobe_linux-7.0-rc1
+sheafjack_v2_modprobe_linux-7.0-rc1
 >
 >SheafJack v2 Cache Pointer Overwrite Proof of Concepts (but via AARW), target : linux 7.0-rc (vmlinux-7.0-rc1.tar.xz) - lubuntu 26 in qemu
 >
 <br><br>
->sheafjack_v2_modprobe_linux-7.0
+sheafjack_v2_modprobe_linux-7.0
 >
 >SheafJack v2 Cache Pointer Overwrite Proof of Concepts (but via AARW), target : linux 7.0 (vmlinux-7.0.tar.xz) - lubuntu 26 in qemu
 >
@@ -308,15 +308,15 @@ cross_cache_read_leak_xattr
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 ## exploits
->CVE-2026-46215-EXPLOIT
+CVE-2026-46215-EXPLOIT
 >CVE-2026-46215 Linux Kernel UAF Exploit in drm driver, adapted for linux 7.0. Cross Cache Tech : SheavesSiphon
 >
 <br><br>
->entrybleed.c
+entrybleed.c
 >kaslr leak via entrybleed
 >
 <br><br>
->CVE-2026-46215-exploit-linux-7.0-uaf-stable
+CVE-2026-46215-exploit-linux-7.0-uaf-stable
 >CVE-2026-46215 Linux Kernel UAF Exploit in drm driver, adapted for linux 7.0. Cross Cache Tech : SheavesSiphon
 >
 <br><br>
@@ -324,6 +324,7 @@ cross_cache_read_leak_xattr
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 ## scripts
+>Scripts for lab research
 <pre>
 dragon_sheafwatch.py
 slab_mon.c
