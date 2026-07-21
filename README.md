@@ -346,6 +346,8 @@ entrybleed.c
 CVE-2026-46215-exploit-linux-7.0-uaf-stable
 >CVE-2026-46215 Linux Kernel UAF Exploit in drm driver, adapted for linux 7.0. Cross Cache Tech : SheavesSiphon
 >
+>Should be more stable than previous version ;-p
+>
 <br><br>
 
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
