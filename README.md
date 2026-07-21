@@ -20,12 +20,12 @@
 
 >Everything designed here is specific for linux kernel version 7.0. 
 >
->Please note that some lab exploits here might need more than 1 attempt,
+>Please note that some lab exploits here might need more than 1 try,
 >
 >while some exploits may work in 1 try. I have prepared the vmlinux for testing, you can use the vmlinux.
 >
 >
->To test, insmod the lkm then run the exploit. Tested and works good for lubuntu 26 with linux kernel 7.0 (custom build, mitigation level is similar to lubuntu 26 with standard mitigation where kaslr on and kptr_restrict = 2).
+>To test, insmod the lkm then run the exploit (unless the real world exploits). Tested and works good for lubuntu 26 with linux kernel 7.0 (custom build, mitigation level is similar to lubuntu 26 with standard mitigation where kaslr on and kptr_restrict = 2). 
 >
 >For real world exploits, some exploit might need a specific requirements and some of the exploits might need more than 1 try to succeed or might need
 >a long time to succeed.
