@@ -12,9 +12,9 @@
 >
 >黑蝎子, Prof. Robotsoft, Mr. Robot 
 >
->(c) <a href="https://www.bluedragonsec.com" style="color: white !important;"><font color="white">www.bluedragonsec.com</font></a>- 2026 All Rights Reserved
+><a href="https://www.bluedragonsec.com" style="color: white !important;"><font color="white">www.bluedragonsec.com</font></a>.
 >
-><a href="https://github.com/bluedragonsecurity" style="color: white !important;"><font color="white">https://github.com/bluedragonsecurity</font></a>
+><a href="https://github.com/bluedragonsecurity" style="color: white !important;"><font color="white">https://github.com/bluedragonsecurity</font></a>.
 >
 > This repository is about Use After Free Exploitation pOc specific to the new slub sheaves architecture in the linux kernel 7.0 on x86_64 architecture. 
 
