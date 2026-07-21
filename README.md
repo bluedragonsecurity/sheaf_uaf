@@ -4,7 +4,8 @@
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 >
->(c) Antonius 
+>(c) Antonius - bluedragonsec.com 2026 - All Rights Reserved
+>
 > Nicknames : w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l
 >
 > jck.marshall (1 time usage), ringlayer, robotsoft, mranton,
