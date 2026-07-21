@@ -6,7 +6,7 @@
 >
 >(c) Antonius - bluedragonsec.com 2026 - All Rights Reserved
 >
-> Nicknames : w1sdom, sw0rdm4n, ev1lut10n, d4r3d3v1l, jck.marshall (1 time usage), ringlayer, robotsoft, mranton, >黑蝎子, Prof. Robotsoft, Mr. Robot 
+> Nicknames : w1sdom, sw0rdm4n, ev1lut10n, d4r3d3v1l, jck.marshall (1 time usage), ringlayer, robotsoft, mranton, 黑蝎子, Prof. Robotsoft, Mr. Robot 
 >
 ><a href="https://www.bluedragonsec.com" style="color: white !important;"><font color="white">www.bluedragonsec.com</font></a>.
 >
