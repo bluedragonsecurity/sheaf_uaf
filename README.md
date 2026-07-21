@@ -62,24 +62,34 @@
 
 ## Contents : 
 
-#### vmlinux-7-damn-vulnerable-uaf
->Linux kernel 7.0 with default mitigations enabled.
->
->Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
->
->This is a linux 7.0 kernel where I removed all patches related to UAF.
-
 #### vmlinux-7.0
 >Linux kernel 7.0 with default mitigations enabled.
 >
 >Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
 >
 >Standard linux kernel with some UAF(s) patched.
+>
+>This vmlinux used for every series.
+>
+>kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
+
+#### vmlinux-7-damn-vulnerable-uaf
+>Linux kernel 7.0 with default mitigations enabled.
+>
+>Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
+>
+>This is a linux 7.0 kernel where I removed all patches related to UAF.
+>
+>kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
 
 #### vmlinux-7.0-rc1
 >Linux kernel 7.0-rc1 with default mitigations enabled.
 >Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
->This one is used for testing sheafjack v2 only.
+>
+>This one is used for testing sheafjack v2 only (1 lab case).
+>
+>kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
+
 
 ## pOc Collections for Linux Kernel 7.0 Slub Sheaves Exploitation Series
 
