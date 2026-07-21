@@ -1,18 +1,26 @@
 # UAF Exploitation in Sheaves Era - The Exploitation pOc Artifacts
 
-(c) Antonius (w1sdom / sw0rdm4n / ev1lut10n) - www.bluedragonsec.com - 2026
-
-
+>(c) Antonius (w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l / jck.marshall (1 time usage), ringlayer, robotsoft, mranton, 黑蝎子) 
+>
+>(c) www.bluedragonsec.com - 2026 All Rights Reserved
+>
+>https://github.com/bluedragonsecurity
+>
+<br>
 >This repository is about Use After Free Exploitation pOc specific to the new slub sheaves architecture in the linux kernel 7.0 on x86_64 architecture. 
 
->Everything designed here is specific for linux kernel version 7.0. Please note that some lab exploits here might need more than 1 attempt,
-while some exploits may work in 1 try. 
+>Everything designed here is specific for linux kernel version 7.0. 
 >
+>Please note that some lab exploits here might need more than 1 attempt,
+>
+>while some exploits may work in 1 try. I have prepared the vmlinux for testing, you can use the vmlinux.
+>
+<br>
 >To test, insmod the lkm then run the exploit. Tested and works good for lubuntu 26 with linux kernel 7.0 (custom build, mitigation level is similar to lubuntu 26 with standard mitigation where kaslr on and kptr_restrict = 2).
 >
 >For real world exploits, some exploit might need a specific requirements and some of the exploits might need more than 1 try to succeed or might need
 >a long time to succeed.
-
+>
 >n.b:
 <pre>
 - Some exploits might need to run more than once if failed.
@@ -26,8 +34,10 @@ while some exploits may work in 1 try.
 
 ### vmlinux
 
->Suggested distro : lubuntu 26 in Qemu. 
+>Suggested distro : lubuntu 26 in Qemu.
+> 
 >Linux kernels with default mitigations enabled.
+>
 >Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
 >
 >kaslr on & kptr_restrict = 2.
@@ -39,17 +49,23 @@ while some exploits may work in 1 try.
 >INIT_ON_ALLOC enabled
 >
 >INIT_ON_FREE off
+>
+>SMEP, SMAP, KPTI enabled
 
 ## Contents : 
 
 #### vmlinux-7-damn-vulnerable-uaf
 >Linux kernel 7.0 with default mitigations enabled.
+>
 >Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
+>
 >This is a linux 7.0 kernel where I removed all patches related to UAF.
 
 #### vmlinux-7.0
 >Linux kernel 7.0 with default mitigations enabled.
+>
 >Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
+>
 >Standard linux kernel with some UAF(s) patched.
 
 #### vmlinux-7.0-rc1
