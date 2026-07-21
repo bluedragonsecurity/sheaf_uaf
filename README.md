@@ -2,9 +2,14 @@
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 "A Guide into Linux Kernel 7.* UAF Exploitation"
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
+
+>
 >(c) Antonius 
-> Nicknames : w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l 
-> jck.marshall (1 time usage), ringlayer, robotsoft, mranton, 黑蝎子, Prof. Robotsoft, Mr. Robot 
+> Nicknames : w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l
+>
+> jck.marshall (1 time usage), ringlayer, robotsoft, mranton,
+>
+>黑蝎子, Prof. Robotsoft, Mr. Robot 
 >
 >(c) <a href="https://www.bluedragonsec.com" style="color: white !important;"><font color="white">www.bluedragonsec.com</font></a>- 2026 All Rights Reserved
 >
