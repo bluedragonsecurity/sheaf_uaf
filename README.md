@@ -1,6 +1,8 @@
 # UAF Exploitation in Sheaves Era - The Exploitation pOc Artifacts
 
->(c) Antonius (w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l / jck.marshall (1 time usage), ringlayer, robotsoft, mranton, 黑蝎子) 
+>(c) Antonius 
+> Nicknames : w1sdom / sw0rdm4n / ev1lut10n / d4r3d3v1l 
+> jck.marshall (1 time usage), ringlayer, robotsoft, mranton, 黑蝎子, Prof. Robotsoft, Mr. Robot 
 >
 >(c) www.bluedragonsec.com - 2026 All Rights Reserved
 >
