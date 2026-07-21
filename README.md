@@ -16,19 +16,26 @@
 >
 >while some exploits may work in 1 try. I have prepared the vmlinux for testing, you can use the vmlinux.
 >
-<br>
+>
 >To test, insmod the lkm then run the exploit. Tested and works good for lubuntu 26 with linux kernel 7.0 (custom build, mitigation level is similar to lubuntu 26 with standard mitigation where kaslr on and kptr_restrict = 2).
 >
 >For real world exploits, some exploit might need a specific requirements and some of the exploits might need more than 1 try to succeed or might need
 >a long time to succeed.
 >
+>
 >n.b:
+>
 <pre>
-- Some exploits might need to run more than once if failed.
-- When you have tested some exploits, the next exploit might fails, 
-  you need to restart your machine before continue.
-- For lab source code, you need to compile the lkm with "make"  
-  and then "insmod" the .ko before testing the exploit.
+- Some exploits might need to run 
+  more than once if failed.
+- When you have tested some exploits, 
+  the next exploit might fails, 
+  you need to restart your 
+  machine before continue.
+- For lab source code, you need 
+  to compile the lkm with "make"  
+  and then "insmod" the .ko 
+  before testing the exploit.
 - To compile the exploit : make
 </pre>
 
