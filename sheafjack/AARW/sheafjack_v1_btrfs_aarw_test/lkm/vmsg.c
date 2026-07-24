@@ -26,7 +26,7 @@
 struct vmsg_io {
     __u32 id;               
     __u32 _pad;
-    __u64 offset; /* READ/WRITE - UNCHECKED */
+    __u64 offset;
     __u64 length;
     __u64 userptr;
 };
@@ -47,6 +47,13 @@ static dev_t              vmsg_dev;
 static struct cdev        vmsg_cdev;
 static atomic_t           vmsg_seq = ATOMIC_INIT(0);
 static struct vmsg *msg_tbl[VMSG_TBL_SIZE];
+
+static void vmsg_ctor(void *p) {
+    struct vmsg *m = p;
+
+    INIT_LIST_HEAD(&m->node);
+    refcount_set(&m->refs, 0);
+}
 
 static int vmsg_open(struct inode *i, struct file *f) {
     return 0;
@@ -90,7 +97,6 @@ static long vmsg_ioctl(struct file *f, unsigned int cmd, unsigned long arg) {
     }
 
     case VMSG_FREE: {
-        /* TOCTOU race to DF - CVE-2017-2671 pattern */
         m = READ_ONCE(msg_tbl[idx]);
         if (!m)
             return -ENOENT;
@@ -103,24 +109,46 @@ static long vmsg_ioctl(struct file *f, unsigned int cmd, unsigned long arg) {
     }
 
     case VMSG_READ: {
+        unsigned char kbuf[VMSG_OBJ_SIZE];
+        size_t todo, chunk;
+
         m = READ_ONCE(msg_tbl[idx]);
         if (!m)
             return -EINVAL;
         if (io.length > 4096)
             return -EINVAL;
-        if (copy_to_user(ubuf, (char *)m + io.offset, io.length))
-            return -EFAULT;
+        todo = io.length;
+        while (todo > 0) {
+            chunk = (todo > sizeof(kbuf)) ? sizeof(kbuf) : todo;
+            if (copy_from_kernel_nofault(kbuf, (char *)m + io.offset, chunk))
+                return -EFAULT;
+            if (copy_to_user(ubuf, kbuf, chunk))
+                return -EFAULT;
+            ubuf    += chunk;
+            io.offset += chunk;
+            todo    -= chunk;
+        }
         return 0;
     }
     case VMSG_WRITE: {
-        /* arbitrary write after dangling */
+        unsigned char kbuf[VMSG_OBJ_SIZE];
+        size_t todo, chunk;
+
         m = READ_ONCE(msg_tbl[idx]);
         if (!m)
             return -EINVAL;
         if (io.length > 4096)
             return -EINVAL;
-        if (copy_from_user((char *)m + io.offset, ubuf, io.length))
-            return -EFAULT;
+        todo = io.length;
+        while (todo > 0) {
+            chunk = (todo > sizeof(kbuf)) ? sizeof(kbuf) : todo;
+            if (copy_from_user(kbuf, ubuf, chunk))
+                return -EFAULT;
+            memcpy((char *)m + io.offset, kbuf, chunk);
+            ubuf    += chunk;
+            io.offset += chunk;
+            todo    -= chunk;
+        }
         return 0;
     }
     case VMSG_FLUSH: {
@@ -159,7 +187,7 @@ static int __init vmsg_init(void) {
                                             SLAB_HWCACHE_ALIGN |
                                             SLAB_TYPESAFE_BY_RCU,
                                             0, VMSG_OBJ_SIZE,
-                                            NULL);
+                                            vmsg_ctor);
     if (!vmsg_cache)
         return -ENOMEM;
     ret = alloc_chrdev_region(&vmsg_dev, 0, 1, DEVICE_NAME);

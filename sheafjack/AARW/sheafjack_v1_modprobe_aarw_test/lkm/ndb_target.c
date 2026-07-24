@@ -49,6 +49,13 @@ static dev_t              ndb_dev;
 static struct cdev        ndb_cdev;
 static atomic_t           ndb_seq = ATOMIC_INIT(0);
 
+static void ndb_ctor(void *p) {
+    struct ndb_session *s = p;
+
+    INIT_LIST_HEAD(&s->node);
+    refcount_set(&s->refs, 0);
+}
+
 static void ndb_timeout_fn(struct work_struct *w) {
     struct ndb_handle *h = container_of(to_delayed_work(w), struct ndb_handle, timeout);
 
@@ -117,26 +124,47 @@ static long ndb_ioctl(struct file *f, unsigned int cmd, unsigned long arg) {
         schedule_delayed_work(&h->timeout, msecs_to_jiffies(io.flags));
         return 0;
     case NDB_READ: {
+        unsigned char kbuf[NDB_OBJ_SIZE];
+        size_t todo, chunk;
+
         if (!h->sess)
             return -EINVAL;
         if (io.length > 4096)
             return -EINVAL;
-        if (copy_to_user(ubuf, (char *)h->sess + io.offset, io.length))
-            return -EFAULT;
+        todo = io.length;
+        while (todo > 0) {
+            chunk = (todo > sizeof(kbuf)) ? sizeof(kbuf) : todo;
+            if (copy_from_kernel_nofault(kbuf, (char *)h->sess + io.offset, chunk))
+                return -EFAULT;
+            if (copy_to_user(ubuf, kbuf, chunk))
+                return -EFAULT;
+            ubuf      += chunk;
+            io.offset += chunk;
+            todo      -= chunk;
+        }
         return 0;
     }
     case NDB_WRITE: {
-        /* aarw at dangling pointer */
+        unsigned char kbuf[NDB_OBJ_SIZE];
+        size_t todo, chunk;
+
         if (!h->sess)
             return -EINVAL;
         if (io.length > 4096)
             return -EINVAL;
-        if (copy_from_user((char *)h->sess + io.offset, ubuf, io.length))
-            return -EFAULT;
+        todo = io.length;
+        while (todo > 0) {
+            chunk = (todo > sizeof(kbuf)) ? sizeof(kbuf) : todo;
+            if (copy_from_user(kbuf, ubuf, chunk))
+                return -EFAULT;
+            memcpy((char *)h->sess + io.offset, kbuf, chunk);
+            ubuf      += chunk;
+            io.offset += chunk;
+            todo      -= chunk;
+        }
         return 0;
     }
     case NDB_FLUSH: {
-        /* trigger */
         struct ndb_session *s;
         s = kmem_cache_alloc(ndb_cache, GFP_KERNEL);
         if (!s)
@@ -173,7 +201,7 @@ static int __init ndb_init(void) {
                                            SLAB_HWCACHE_ALIGN |
                                            SLAB_TYPESAFE_BY_RCU,
                                            0, NDB_OBJ_SIZE,
-                                           NULL);
+                                           ndb_ctor);
     if (!ndb_cache)
         return -ENOMEM;
     ret = alloc_chrdev_region(&ndb_dev, 0, 1, DEVICE_NAME);

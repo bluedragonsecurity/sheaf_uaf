@@ -1,6 +1,9 @@
 # Cross Cache UAF Exploitation pOc for Linux 7.0
 
 >Antonius (w1sdom / ev1lut10n / sw0rdm4n / ringlayer / robotsoft) - bluedragonsec.com
+>
+>for SheavesSiphon implementation, check elastic_objects, exploits & sheafjack directory !!!
+
 
 ## LPE SERIES
 
