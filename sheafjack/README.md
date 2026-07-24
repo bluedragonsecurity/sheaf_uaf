@@ -66,15 +66,3 @@
 >n.b : SheafJack v1 works for cache with SLAB_TYPESAFE_BY_RCU or cache with ctor
 >
 >for a broader target, use SheafJack v2 !!!
-
-### sheafjack_v2_modprobe_linux-7.0-rc1
-> SheafJack v2 - Cache pointer overwrite testing - non UAF, just AARW for testing & validaring the exploition technique.
->
-> Result : LPE. Tested on linux 7.0-rc1 - lubuntu 26
-
-### sheafjack_v2_modprobe_linux-7.0
-> SheafJack v2 - Cache pointer overwrite testing - non UAF, just AARW for testing & validaring the exploition technique.
->
-> Result : LPE. Tested on linux 7.0 - lubuntu 26
-
-

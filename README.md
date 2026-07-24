@@ -371,17 +371,6 @@ cross_cache_elastic_pipe_siphon
 >
 >for a broader target, use SheafJack v2 !!!
 
-### sheafjack_v2_modprobe_linux-7.0-rc1
-> SheafJack v2 - Cache pointer overwrite testing - non UAF, just AARW for testing & validaring the exploition technique.
->
-> Result : LPE. Tested on linux 7.0-rc1 - lubuntu 26
-
-### sheafjack_v2_modprobe_linux-7.0
-> SheafJack v2 - Cache pointer overwrite testing - non UAF, just AARW for testing & validaring the exploition technique.
->
-> Result : LPE. Tested on linux 7.0 - lubuntu 26
->
-
 <br><br>
 
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
