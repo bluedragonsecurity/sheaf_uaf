@@ -88,13 +88,6 @@
 >
 >kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
 
-#### vmlinux-7.0-rc1
->Linux kernel 7.0-rc1 with default mitigations enabled.
->Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
->
->This one is used for testing sheafjack v2 only (1 lab case).
->
->kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
 
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
