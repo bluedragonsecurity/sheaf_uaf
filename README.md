@@ -79,16 +79,6 @@
 >
 >kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
 
-#### vmlinux-7-damn-vulnerable-uaf
->Linux kernel 7.0 with default mitigations enabled.
->
->Mitigation level is similar to default ubuntu 26 or lubuntu 26 distro.
->
->This is a linux 7.0 kernel where I removed all patches related to UAF.
->
->kaslr on, kptr_restrict 2, hardened_usercopy enabled, random_kmalloc_caches enabled, init_on_alloc enabled, init_on_free disabled, smep+smap+kpti enabled
-
-
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 
 ## pOc Collections for Linux Kernel 7.0 Slub Sheaves Exploitation Series
