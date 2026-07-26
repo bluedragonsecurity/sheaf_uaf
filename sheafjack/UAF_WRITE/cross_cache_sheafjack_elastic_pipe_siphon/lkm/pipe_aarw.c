@@ -77,7 +77,8 @@ static long pa_ioctl(struct file *f, unsigned int cmd, unsigned long arg) {
 		if (copy_from_user(slots[req.slot], (void __user *)req.ubuf, req.len))
 			ret = -EFAULT;
 		break;
-	default: ret = -ENOTTY;
+	default: 
+		ret = -ENOTTY;
 	}
 	mutex_unlock(&pa_lock);
 
