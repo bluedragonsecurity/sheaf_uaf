@@ -68,6 +68,15 @@
 
 ## Contents : 
 
+### PAPER
+> UAF Exploitation in the Sheaves Era
+>
+> Read the Paper : <a href="https://github.com/bluedragonsecurity/sheaf_uaf/blob/main/UAF_Exploitation_in_the_Sheaves_Era.md">https://github.com/bluedragonsecurity/sheaf_uaf/blob/main/UAF_Exploitation_in_the_Sheaves_Era.md</a>
+> 
+
+
+
+
 #### vmlinux-7.0
 >Linux kernel 7.0 with default mitigations enabled.
 >
