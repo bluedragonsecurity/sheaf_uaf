@@ -2,7 +2,7 @@
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 "A Guide into Linux Kernel 7.* UAF Exploitation"
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
->
+
 ### PAPER
 > UAF Exploitation in the Sheaves Era
 >
