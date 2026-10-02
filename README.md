@@ -2,6 +2,12 @@
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
 "A Guide into Linux Kernel 7.* UAF Exploitation"
 <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 20px 0;">
+>
+### PAPER
+> UAF Exploitation in the Sheaves Era
+>
+> Read the Paper : <a href="https://github.com/bluedragonsecurity/sheaf_uaf/blob/main/UAF_Exploitation_in_the_Sheaves_Era.md">https://github.com/bluedragonsecurity/sheaf_uaf/blob/main/UAF_Exploitation_in_the_Sheaves_Era.md</a>
+> 
 
 >
 >(c) Antonius - bluedragonsec.com 2026 - All Rights Reserved
@@ -73,8 +79,6 @@
 >
 > Read the Paper : <a href="https://github.com/bluedragonsecurity/sheaf_uaf/blob/main/UAF_Exploitation_in_the_Sheaves_Era.md">https://github.com/bluedragonsecurity/sheaf_uaf/blob/main/UAF_Exploitation_in_the_Sheaves_Era.md</a>
 > 
-
-
 
 
 #### vmlinux-7.0
