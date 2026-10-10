@@ -6,7 +6,7 @@
 ### PAPER
 > UAF Exploitation in the Sheaves Era
 >
->paper coming soon...
+>paper : https://github.com/bluedragonsecurity/sheaf_uaf/blob/main/UAF_Exploitation_in_the_Sheaves_Era.md
 >  
 
 >
